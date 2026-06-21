@@ -1,0 +1,99 @@
+# Diseñado por: Edward Labrador
+# Para Unión de Comerciantes del Estado Zulia
+# Versión: 1.0.0
+# Todos los Derechos Reservados UCEZ 2026
+
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: ucez_db_prod
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - ucez_pgdata_prod:/var/lib/postgresql/data
+    networks:
+      - ucez_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    container_name: ucez_backend
+    restart: always
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-15m}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
+      PORT: 3001
+      NODE_ENV: production
+      FRONTEND_URL: ${FRONTEND_URL}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      EMAIL_FROM: ${EMAIL_FROM}
+    volumes:
+      - ucez_uploads:/app/apps/backend/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ucez_net
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3001/api/v1/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: ucez_web
+    restart: always
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+      NEXT_PUBLIC_APP_NAME: "UCEZ - Unión de Comerciantes del Estado Zulia"
+    depends_on:
+      - backend
+    networks:
+      - ucez_net
+
+  nginx:
+    image: nginx:alpine
+    container_name: ucez_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ucez_certbot_www:/var/www/certbot:ro
+      - ucez_certbot_conf:/etc/letsencrypt:ro
+    depends_on:
+      - web
+      - backend
+    networks:
+      - ucez_net
+
+volumes:
+  ucez_pgdata_prod:
+  ucez_uploads:
+  ucez_certbot_www:
+  ucez_certbot_conf:
+
+networks:
+  ucez_net:
+    driver: bridge

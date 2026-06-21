@@ -1,0 +1,46 @@
+# Dependencias
+node_modules/
+.pnpm-store/
+
+# Build
+dist/
+.next/
+out/
+build/
+
+# Entorno — NUNCA subir archivos con secretos reales
+.env
+.env.local
+.env.*.local
+.env.production
+!.env.production.example
+
+# Uploads y backups
+apps/backend/uploads/
+backups/
+
+# Turbo
+.turbo/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Prisma
+*.db
+*.db-journal
+
+# Expo / React Native
+.expo/
+android/
+ios/

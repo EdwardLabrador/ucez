@@ -1,0 +1,385 @@
+// Diseñado por: Edward Labrador
+// Para Unión de Comerciantes del Estado Zulia
+// Versión: 1.0.0
+// Todos los Derechos Reservados UCEZ 2026
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  STAFF
+  AFFILIATE
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum MembershipStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  PENDING
+}
+
+enum MembershipPlan {
+  BASIC
+  STANDARD
+  PREMIUM
+  ENTERPRISE
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  OVERDUE
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  CASH
+  TRANSFER
+  DEPOSIT
+  CARD
+  CHECK
+  OTHER
+}
+
+enum EventType {
+  CONFERENCE
+  WORKSHOP
+  MEETING
+  WEBINAR
+  SOCIAL
+  OTHER
+}
+
+enum EventStatus {
+  DRAFT
+  PUBLISHED
+  CANCELLED
+  COMPLETED
+}
+
+enum ServiceCategory {
+  LEGAL
+  FINANCIAL
+  TRAINING
+  NETWORKING
+  CONSULTING
+  BENEFITS
+  OTHER
+}
+
+enum NotificationType {
+  PAYMENT_CONFIRMED
+  PAYMENT_REMINDER
+  PAYMENT_OVERDUE
+  EVENT_PUBLISHED
+  EVENT_REMINDER
+  SERVICE_PUBLISHED
+  ANNOUNCEMENT
+  MEMBERSHIP_EXPIRING
+  SYSTEM
+}
+
+enum NotificationChannel {
+  IN_APP
+  EMAIL
+  BOTH
+}
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  LOGIN
+  LOGOUT
+  EXPORT
+  PAYMENT_REGISTERED
+  RECEIPT_GENERATED
+}
+
+// ─────────────────────────────────────────────
+// USUARIOS
+// ─────────────────────────────────────────────
+
+model User {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  password     String
+  name         String
+  role         UserRole   @default(AFFILIATE)
+  status       UserStatus @default(ACTIVE)
+  avatarUrl    String?
+  lastLoginAt  DateTime?
+
+  affiliateId  String?    @unique
+  affiliate    Affiliate? @relation(fields: [affiliateId], references: [id])
+
+  notifications Notification[]
+  auditLogs     AuditLog[]
+  refreshTokens RefreshToken[]
+
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@map("refresh_tokens")
+}
+
+// ─────────────────────────────────────────────
+// AFILIADOS
+// ─────────────────────────────────────────────
+
+model Affiliate {
+  id                   String           @id @default(uuid())
+  businessName         String
+  tradeName            String?
+  ruc                  String           @unique
+  sector               String
+  category             String?
+  membershipStatus     MembershipStatus @default(PENDING)
+  membershipPlan       MembershipPlan   @default(BASIC)
+  membershipStartDate  DateTime
+  membershipEndDate    DateTime?
+  address              String
+  city                 String
+  phone                String
+  email                String
+  website              String?
+  logoUrl              String?
+  description          String?
+  representativeName   String
+  representativeEmail  String
+  representativePhone  String
+  isActive             Boolean          @default(true)
+
+  user                 User?
+  contacts             AffiliateContact[]
+  payments             Payment[]
+  eventRegistrations   EventRegistration[]
+  documents            AffiliateDocument[]
+
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  @@map("affiliates")
+}
+
+model AffiliateContact {
+  id          String    @id @default(uuid())
+  affiliateId String
+  affiliate   Affiliate @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  name        String
+  position    String
+  email       String
+  phone       String?
+  isPrimary   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("affiliate_contacts")
+}
+
+model AffiliateDocument {
+  id          String    @id @default(uuid())
+  affiliateId String
+  affiliate   Affiliate @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  name        String
+  fileUrl     String
+  fileType    String
+  uploadedAt  DateTime  @default(now())
+
+  @@map("affiliate_documents")
+}
+
+// ─────────────────────────────────────────────
+// COBROS Y PAGOS
+// ─────────────────────────────────────────────
+
+model Payment {
+  id            String        @id @default(uuid())
+  affiliateId   String
+  affiliate     Affiliate     @relation(fields: [affiliateId], references: [id])
+  receiptNumber String        @unique
+  amount        Decimal       @db.Decimal(10, 2)
+  currency      String        @default("USD")
+  status        PaymentStatus @default(PENDING)
+  method        PaymentMethod?
+  reference     String?
+  period        String
+  dueDate       DateTime
+  paidAt        DateTime?
+  notes         String?
+  receiptUrl    String?
+  receiptSentAt DateTime?
+
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@map("payments")
+}
+
+// ─────────────────────────────────────────────
+// EVENTOS
+// ─────────────────────────────────────────────
+
+model Event {
+  id          String      @id @default(uuid())
+  title       String
+  description String
+  type        EventType   @default(OTHER)
+  status      EventStatus @default(DRAFT)
+  location    String?
+  isVirtual   Boolean     @default(false)
+  virtualLink String?
+  startDate   DateTime
+  endDate     DateTime
+  capacity    Int?
+  imageUrl    String?
+  isPublic    Boolean     @default(true)
+
+  registrations EventRegistration[]
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@map("events")
+}
+
+model EventRegistration {
+  id          String    @id @default(uuid())
+  eventId     String
+  event       Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  affiliateId String
+  affiliate   Affiliate @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  registeredAt DateTime @default(now())
+  attended    Boolean   @default(false)
+
+  @@unique([eventId, affiliateId])
+  @@map("event_registrations")
+}
+
+// ─────────────────────────────────────────────
+// SERVICIOS
+// ─────────────────────────────────────────────
+
+model Service {
+  id                String          @id @default(uuid())
+  title             String
+  description       String
+  category          ServiceCategory @default(OTHER)
+  isActive          Boolean         @default(true)
+  imageUrl          String?
+  contactInfo       String?
+  externalLink      String?
+  availableForPlans MembershipPlan[]
+
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  @@map("services")
+}
+
+// ─────────────────────────────────────────────
+// ANUNCIOS
+// ─────────────────────────────────────────────
+
+model Announcement {
+  id          String   @id @default(uuid())
+  title       String
+  content     String
+  imageUrl    String?
+  isPublished Boolean  @default(false)
+  publishedAt DateTime?
+  expiresAt   DateTime?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("announcements")
+}
+
+// ─────────────────────────────────────────────
+// NOTIFICACIONES
+// ─────────────────────────────────────────────
+
+model Notification {
+  id            String              @id @default(uuid())
+  userId        String
+  user          User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type          NotificationType
+  title         String
+  body          String
+  isRead        Boolean             @default(false)
+  channel       NotificationChannel @default(IN_APP)
+  referenceId   String?
+  referenceType String?
+  readAt        DateTime?
+
+  createdAt     DateTime            @default(now())
+
+  @@map("notifications")
+}
+
+// ─────────────────────────────────────────────
+// CONFIGURACIÓN
+// ─────────────────────────────────────────────
+
+model Setting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  label     String
+  group     String   @default("general")
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
+
+// ─────────────────────────────────────────────
+// AUDITORÍA
+// ─────────────────────────────────────────────
+
+model AuditLog {
+  id            String      @id @default(uuid())
+  userId        String?
+  user          User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action        AuditAction
+  entity        String
+  entityId      String?
+  previousValue Json?
+  newValue      Json?
+  ipAddress     String?
+  userAgent     String?
+
+  createdAt     DateTime    @default(now())
+
+  @@map("audit_logs")
+}

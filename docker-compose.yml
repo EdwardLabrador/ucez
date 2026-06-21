@@ -1,0 +1,21 @@
+# Diseñado por: Edward Labrador
+# Para Unión de Comerciantes del Estado Zulia
+# Versión: 1.0.0
+# Todos los Derechos Reservados UCEZ 2026
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ucez_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ucez_user
+      POSTGRES_PASSWORD: ucez_pass2026
+      POSTGRES_DB: ucez_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - ucez_pgdata:/var/lib/postgresql/data
+
+volumes:
+  ucez_pgdata:

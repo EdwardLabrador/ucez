@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "UCEZ",
+    "slug": "ucez",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#1a3c6e"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ucez.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#1a3c6e"
+      },
+      "package": "com.ucez.app"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ],
+    "scheme": "ucez",
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    }
+  }
+}
