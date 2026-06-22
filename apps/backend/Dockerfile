@@ -49,4 +49,4 @@ RUN mkdir -p uploads/receipts
 EXPOSE 3001
 
 ENTRYPOINT ["dumb-init", "--"]
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
+CMD ["sh", "-c", "npx prisma generate && npx prisma migrate deploy && node dist/main"]
