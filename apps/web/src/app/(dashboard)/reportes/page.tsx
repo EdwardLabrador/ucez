@@ -67,7 +67,7 @@ const REPORTS = [
 ];
 
 export default function ReportesPage() {
-  const { token, user } = useAuthStore();
+  const { accessToken: token, user } = useAuthStore();
   const [loading, setLoading] = useState<string | null>(null);
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');

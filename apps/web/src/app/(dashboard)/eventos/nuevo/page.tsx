@@ -29,7 +29,7 @@ const TIPOS = [
 export default function NuevoEventoPage() {
   const router = useRouter();
   const qc = useQueryClient();
-  const { register, handleSubmit } = useForm({ defaultValues: { type: 'OTHER', isPublic: true, isVirtual: false } });
+  const { register, handleSubmit } = useForm<Record<string, any>>({ defaultValues: { type: 'OTHER', isPublic: true, isVirtual: false } });
 
   const mutation = useMutation({
     mutationFn: (data: any) => api.post('/events', data),
