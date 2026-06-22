@@ -10,6 +10,8 @@ WORKDIR /app
 
 RUN npm install -g pnpm@11.8.0
 
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY packages/shared/package.json ./packages/shared/
 COPY apps/backend/package.json ./apps/backend/

@@ -1,0 +1,38 @@
+.git
+.gitignore
+*.md
+
+# Dependencias locales
+node_modules
+**/node_modules
+
+# Apps que no necesita el backend
+apps/web
+apps/mobile
+
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Artefactos de build locales
+**/dist
+**/.next
+**/build
+**/.expo
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+
+# Docker
+docker-compose*.yml
+nginx/
+scripts/
