@@ -40,7 +40,7 @@ const SERVICIOS = [
 
 const STATS = [
   { valor: '500+', label: 'Empresas Afiliadas' },
-  { valor: '+30', label: 'Años de Trayectoria' },
+  { valor: '+60', label: 'Años de Trayectoria' },
   { valor: '12', label: 'Sectores Representados' },
   { valor: '100%', label: 'Compromiso Gremial' },
 ];
