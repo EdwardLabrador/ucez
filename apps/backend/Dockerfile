@@ -44,11 +44,11 @@ COPY --from=builder /app/apps/backend/dist ./apps/backend/dist
 
 WORKDIR /app/apps/backend
 
-RUN npx prisma generate
+RUN npx prisma@5 generate
 
 RUN mkdir -p uploads/receipts
 
 EXPOSE 3001
 
 ENTRYPOINT ["dumb-init", "--"]
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
+CMD ["sh", "-c", "npx prisma@5 migrate deploy && node dist/main"]
