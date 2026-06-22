@@ -44,6 +44,8 @@ COPY --from=builder /app/apps/backend/dist ./apps/backend/dist
 
 WORKDIR /app/apps/backend
 
+RUN npx prisma generate
+
 RUN mkdir -p uploads/receipts
 
 EXPOSE 3001
