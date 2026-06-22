@@ -150,7 +150,7 @@ export default function LandingPage() {
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#c8932a] to-[#e8b84b]">
                 Comercio Zuliano
               </span>
-              desde 1994
+              desde 1966
             </h1>
 
             <p className="text-white/60 text-lg leading-relaxed mb-10 max-w-lg">
@@ -316,7 +316,7 @@ export default function LandingPage() {
                 <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-[#c8932a] mb-8">
                   <span className="text-white font-black text-3xl">UC</span>
                 </div>
-                <p className="text-[#c8932a] text-xs font-bold uppercase tracking-[0.2em] mb-2">Desde 1994</p>
+                <p className="text-[#c8932a] text-xs font-bold uppercase tracking-[0.2em] mb-2">Desde 1966</p>
                 <p className="text-white text-3xl font-black leading-tight mb-6">
                   Más de 30 años<br />al servicio del<br />comercio zuliano
                 </p>
@@ -435,7 +435,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <p className="text-white/40 text-sm leading-relaxed max-w-xs">
-                Organización gremial que representa y fortalece al sector comercial del estado Zulia desde 1994.
+                Organización gremial que representa y fortalece al sector comercial del estado Zulia desde 1966.
               </p>
             </div>
 
