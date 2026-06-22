@@ -53,4 +53,4 @@ RUN mkdir -p uploads/receipts
 EXPOSE 3001
 
 ENTRYPOINT ["dumb-init", "--"]
-CMD ["node", "dist/main"]
+CMD ["node", "dist/src/main"]
