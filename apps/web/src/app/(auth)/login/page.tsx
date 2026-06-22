@@ -47,7 +47,7 @@ export default function LoginPage() {
           <h2 className="text-xl font-bold text-gray-800 mb-1">Iniciar Sesión</h2>
           <p className="text-sm text-gray-500 mb-6">Ingrese sus credenciales para continuar</p>
 
-          <form onSubmit={handleSubmit((data) => login.mutate(data as FormData))} className="space-y-4">
+          <form onSubmit={handleSubmit((data) => login.mutate({ email: data.email!, password: data.password! }))} className="space-y-4">
             <Input
               label="Correo Electrónico"
               type="email"
