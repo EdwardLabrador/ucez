@@ -5,6 +5,7 @@
 
 'use client';
 
+import { Suspense } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -42,7 +43,7 @@ const METODOS = [
   { value: 'OTHER', label: 'Otro' },
 ];
 
-export default function NuevoCobroPage() {
+function NuevoCobroForm() {
   const router = useRouter();
   const qc = useQueryClient();
   const searchParams = useSearchParams();
@@ -147,5 +148,13 @@ export default function NuevoCobroPage() {
         </form>
       </main>
     </div>
+  );
+}
+
+export default function NuevoCobroPage() {
+  return (
+    <Suspense>
+      <NuevoCobroForm />
+    </Suspense>
   );
 }
