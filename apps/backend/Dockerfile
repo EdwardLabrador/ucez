@@ -4,13 +4,13 @@
 # Todos los Derechos Reservados UCEZ 2026
 
 # ── Etapa 1: Build ──────────────────────────────────────────
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@11.8.0
 
-COPY package.json pnpm-workspace.yaml ./
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY packages/shared/package.json ./packages/shared/
 COPY apps/backend/package.json ./apps/backend/
 
@@ -22,7 +22,7 @@ COPY apps/backend ./apps/backend
 RUN pnpm --filter backend run build
 
 # ── Etapa 2: Runtime ────────────────────────────────────────
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 
 WORKDIR /app
 
@@ -30,9 +30,9 @@ RUN apk add --no-cache dumb-init
 
 ENV NODE_ENV=production
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@11.8.0
 
-COPY package.json pnpm-workspace.yaml ./
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY packages/shared/package.json ./packages/shared/
 COPY apps/backend/package.json ./apps/backend/
 
