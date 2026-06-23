@@ -40,7 +40,7 @@ type StatCardProps = {
   subtitle?: string;
 };
 
-export function StatCard({ title, value, icon, color = 'bg-blue-50 text-[#4169E1]', subtitle }: StatCardProps) {
+export function StatCard({ title, value, icon, color = 'bg-blue-50 text-[#1a3c6e]', subtitle }: StatCardProps) {
   return (
     <Card className="flex items-center gap-4 p-6">
       <div className={cn('p-3 rounded-xl', color)}>{icon}</div>

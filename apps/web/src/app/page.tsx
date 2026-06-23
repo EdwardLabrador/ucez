@@ -133,7 +133,7 @@ export default function LandingPage() {
         {/* Glow izquierda */}
         <div className="absolute top-1/3 -left-40 w-[600px] h-[600px] rounded-full bg-[#c8932a]/10 blur-[120px]" />
         {/* Glow derecha */}
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-[#4169E1]/60 blur-[100px]" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-[#1a3c6e]/60 blur-[100px]" />
 
         <div className="relative max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Texto */}

@@ -14,11 +14,11 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const variants = {
-  primary: 'bg-[#4169E1] text-white hover:bg-[#152f57] focus:ring-[#4169E1]',
+  primary: 'bg-[#1a3c6e] text-white hover:bg-[#152f57] focus:ring-[#1a3c6e]',
   secondary: 'bg-[#c8932a] text-white hover:bg-[#b07d22] focus:ring-[#c8932a]',
   danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
   ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300',
-  outline: 'border border-[#4169E1] text-[#4169E1] hover:bg-blue-50 focus:ring-[#4169E1]',
+  outline: 'border border-[#1a3c6e] text-[#1a3c6e] hover:bg-blue-50 focus:ring-[#1a3c6e]',
 };
 
 const sizes = {

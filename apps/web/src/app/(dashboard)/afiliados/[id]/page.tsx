@@ -81,7 +81,7 @@ function AfiliadoDetalle() {
       key: 'recibo',
       header: 'Recibo',
       render: (r: any) => r.receiptUrl
-        ? <a href={r.receiptUrl} target="_blank" rel="noreferrer" className="text-[#4169E1] text-xs underline">Descargar</a>
+        ? <a href={r.receiptUrl} target="_blank" rel="noreferrer" className="text-[#1a3c6e] text-xs underline">Descargar</a>
         : <span className="text-gray-400 text-xs">—</span>,
     },
   ];
@@ -101,7 +101,7 @@ function AfiliadoDetalle() {
         {/* Encabezado */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-xl bg-[#4169E1] flex items-center justify-center">
+            <div className="w-14 h-14 rounded-xl bg-[#1a3c6e] flex items-center justify-center">
               <Building2 className="w-7 h-7 text-white" />
             </div>
             <div>
@@ -144,7 +144,7 @@ function AfiliadoDetalle() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
             <p className="text-xs text-gray-500 mb-1">Cuota Mensual</p>
-            <p className="text-2xl font-bold text-[#4169E1]">${quota} USD</p>
+            <p className="text-2xl font-bold text-[#1a3c6e]">${quota} USD</p>
             <p className="text-xs text-gray-400 mt-1">Plan {PLAN_LABEL[affiliate.membershipPlan]}</p>
           </div>
           <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
@@ -169,7 +169,7 @@ function AfiliadoDetalle() {
               onClick={() => router.push(`/afiliados/${id}?tab=${tab.key}`)}
               className={`px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === tab.key
-                  ? 'border-[#4169E1] text-[#4169E1]'
+                  ? 'border-[#1a3c6e] text-[#1a3c6e]'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >

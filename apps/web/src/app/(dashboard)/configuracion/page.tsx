@@ -47,7 +47,7 @@ export default function ConfiguracionPage() {
   if (isLoading) {
     return (
       <div className="flex-1 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-[#4169E1] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-[#1a3c6e] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -63,7 +63,7 @@ export default function ConfiguracionPage() {
           return (
             <div key={group} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
               <div className="flex items-center gap-3 px-6 py-4 border-b border-gray-100 bg-gray-50">
-                <Icon className="w-5 h-5 text-[#4169E1]" />
+                <Icon className="w-5 h-5 text-[#1a3c6e]" />
                 <h2 className="font-black text-gray-900">{meta.label}</h2>
               </div>
               <div className="divide-y divide-gray-50">
@@ -76,7 +76,7 @@ export default function ConfiguracionPage() {
                       type="text"
                       value={getValue(s.key, s.value)}
                       onChange={e => setEdited(prev => ({ ...prev, [s.key]: e.target.value }))}
-                      className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4169E1] focus:border-transparent"
+                      className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#1a3c6e] focus:border-transparent"
                     />
                   </div>
                 ))}
@@ -87,7 +87,7 @@ export default function ConfiguracionPage() {
 
         {hasChanges && (
           <div className="sticky bottom-4">
-            <div className="bg-[#4169E1] rounded-2xl px-6 py-4 flex items-center justify-between shadow-2xl">
+            <div className="bg-[#1a3c6e] rounded-2xl px-6 py-4 flex items-center justify-between shadow-2xl">
               <p className="text-white text-sm font-medium">
                 Tienes cambios sin guardar
               </p>

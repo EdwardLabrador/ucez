@@ -39,7 +39,7 @@ export function Sidebar() {
   const isAdmin = user?.role === 'SUPER_ADMIN' || user?.role === 'ADMIN';
 
   return (
-    <aside className="flex flex-col w-64 min-h-screen bg-[#4169E1] text-white">
+    <aside className="flex flex-col w-64 min-h-screen bg-[#1a3c6e] text-white">
       <div className="px-6 py-6 border-b border-[#2d5a9e]">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-[#c8932a] flex items-center justify-center font-bold text-white text-lg">U</div>

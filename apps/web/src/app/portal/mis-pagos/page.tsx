@@ -57,7 +57,7 @@ export default function MisPagosPage() {
                 <CardBody className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-3">
                   <div className="flex gap-3 items-start">
                     <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
-                      <Receipt className="w-4 h-4 text-[#4169E1]" />
+                      <Receipt className="w-4 h-4 text-[#1a3c6e]" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-gray-900">Período: {p.period}</p>
@@ -76,7 +76,7 @@ export default function MisPagosPage() {
                         href={p.receiptUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-[#4169E1] text-[#4169E1] text-xs hover:bg-blue-50 transition-colors"
+                        className="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-[#1a3c6e] text-[#1a3c6e] text-xs hover:bg-blue-50 transition-colors"
                       >
                         <Download className="w-3.5 h-3.5" /> Recibo
                       </a>

@@ -62,13 +62,13 @@ export default function ServiciosPage() {
           <Card>
             <CardBody className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <h3 className="sm:col-span-2 font-semibold text-gray-800">Nuevo Servicio</h3>
-              <input className="border rounded-lg px-3 py-2 text-sm sm:col-span-2 focus:outline-none focus:ring-2 focus:ring-[#4169E1]" placeholder="Título del servicio *" value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} />
-              <textarea className="border rounded-lg px-3 py-2 text-sm sm:col-span-2 focus:outline-none focus:ring-2 focus:ring-[#4169E1]" rows={3} placeholder="Descripción del servicio *" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} />
-              <select className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4169E1]" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })}>
+              <input className="border rounded-lg px-3 py-2 text-sm sm:col-span-2 focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]" placeholder="Título del servicio *" value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} />
+              <textarea className="border rounded-lg px-3 py-2 text-sm sm:col-span-2 focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]" rows={3} placeholder="Descripción del servicio *" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} />
+              <select className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })}>
                 {CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
               </select>
-              <input className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4169E1]" placeholder="Información de contacto" value={form.contactInfo} onChange={e => setForm({ ...form, contactInfo: e.target.value })} />
-              <input className="border rounded-lg px-3 py-2 text-sm sm:col-span-2 focus:outline-none focus:ring-2 focus:ring-[#4169E1]" placeholder="Enlace externo (URL)" value={form.externalLink} onChange={e => setForm({ ...form, externalLink: e.target.value })} />
+              <input className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]" placeholder="Información de contacto" value={form.contactInfo} onChange={e => setForm({ ...form, contactInfo: e.target.value })} />
+              <input className="border rounded-lg px-3 py-2 text-sm sm:col-span-2 focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]" placeholder="Enlace externo (URL)" value={form.externalLink} onChange={e => setForm({ ...form, externalLink: e.target.value })} />
               <div className="sm:col-span-2 flex justify-end">
                 <Button onClick={() => create.mutate()} loading={create.isPending}>Guardar Servicio</Button>
               </div>

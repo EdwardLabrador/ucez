@@ -115,10 +115,10 @@ export default function UsuariosPage() {
           <input
             placeholder="Buscar por nombre o email..."
             value={search} onChange={e => setSearch(e.target.value)}
-            className="border border-gray-200 rounded-xl px-4 py-2.5 text-sm w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-[#4169E1]"
+            className="border border-gray-200 rounded-xl px-4 py-2.5 text-sm w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]"
           />
           <button onClick={openCreate}
-            className="flex items-center gap-2 bg-[#4169E1] hover:bg-[#152f57] text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-colors">
+            className="flex items-center gap-2 bg-[#1a3c6e] hover:bg-[#152f57] text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-colors">
             <Plus className="w-4 h-4" /> Nuevo Usuario
           </button>
         </div>
@@ -126,7 +126,7 @@ export default function UsuariosPage() {
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
           {isLoading ? (
             <div className="flex items-center justify-center py-16">
-              <div className="w-8 h-8 border-4 border-[#4169E1] border-t-transparent rounded-full animate-spin" />
+              <div className="w-8 h-8 border-4 border-[#1a3c6e] border-t-transparent rounded-full animate-spin" />
             </div>
           ) : users.length === 0 ? (
             <div className="text-center py-16">
@@ -147,7 +147,7 @@ export default function UsuariosPage() {
                   <tr key={u.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-full bg-[#4169E1] flex items-center justify-center flex-shrink-0">
+                        <div className="w-9 h-9 rounded-full bg-[#1a3c6e] flex items-center justify-center flex-shrink-0">
                           <span className="text-white text-xs font-bold">{u.name?.[0]?.toUpperCase()}</span>
                         </div>
                         <div>
@@ -173,7 +173,7 @@ export default function UsuariosPage() {
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-2">
                         <button onClick={() => openEdit(u)}
-                          className="p-1.5 text-gray-400 hover:text-[#4169E1] hover:bg-blue-50 rounded-lg transition-colors">
+                          className="p-1.5 text-gray-400 hover:text-[#1a3c6e] hover:bg-blue-50 rounded-lg transition-colors">
                           <Pencil className="w-4 h-4" />
                         </button>
                         <button onClick={() => { if (confirm('¿Eliminar usuario?')) remove.mutate(u.id); }}
@@ -195,24 +195,24 @@ export default function UsuariosPage() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <label className="text-xs font-semibold text-gray-600 mb-1 block">Nombre completo</label>
-              <input {...register('name')} className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4169E1]" />
+              <input {...register('name')} className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]" />
               {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>}
             </div>
             <div>
               <label className="text-xs font-semibold text-gray-600 mb-1 block">Email</label>
-              <input {...register('email')} type="email" className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4169E1]" />
+              <input {...register('email')} type="email" className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]" />
               {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
             </div>
             <div>
               <label className="text-xs font-semibold text-gray-600 mb-1 block">
                 {modal === 'edit' ? 'Nueva contraseña (dejar vacío para no cambiar)' : 'Contraseña'}
               </label>
-              <input {...register('password')} type="password" className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4169E1]" />
+              <input {...register('password')} type="password" className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]" />
               {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password.message}</p>}
             </div>
             <div>
               <label className="text-xs font-semibold text-gray-600 mb-1 block">Rol</label>
-              <select {...register('role')} className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4169E1] bg-white">
+              <select {...register('role')} className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3c6e] bg-white">
                 {Object.entries(ROLE_LABELS).map(([v, l]) => <option key={v} value={v}>{l}</option>)}
               </select>
             </div>
@@ -222,7 +222,7 @@ export default function UsuariosPage() {
                 Cancelar
               </button>
               <button type="submit" disabled={create.isPending || update.isPending}
-                className="flex-1 bg-[#4169E1] hover:bg-[#152f57] text-white font-bold py-2.5 rounded-xl text-sm transition-colors disabled:opacity-60">
+                className="flex-1 bg-[#1a3c6e] hover:bg-[#152f57] text-white font-bold py-2.5 rounded-xl text-sm transition-colors disabled:opacity-60">
                 {create.isPending || update.isPending ? 'Guardando...' : modal === 'create' ? 'Crear' : 'Guardar'}
               </button>
             </div>
