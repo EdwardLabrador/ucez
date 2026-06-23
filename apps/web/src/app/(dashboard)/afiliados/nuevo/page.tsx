@@ -63,6 +63,9 @@ export default function NuevoAfiliadoPage() {
       for (const key of optionalStrings) {
         if (!payload[key]) delete payload[key];
       }
+      if (payload.website && !/^https?:\/\//i.test(payload.website)) {
+        payload.website = `https://${payload.website}`;
+      }
       return api.post('/affiliates', payload);
     },
     onSuccess: () => {

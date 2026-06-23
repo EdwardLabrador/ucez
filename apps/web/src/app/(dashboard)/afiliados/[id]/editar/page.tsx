@@ -99,6 +99,9 @@ export default function EditarAfiliadoPage() {
       for (const key of optionalStrings) {
         if (!payload[key]) delete payload[key];
       }
+      if (payload.website && !/^https?:\/\//i.test(payload.website)) {
+        payload.website = `https://${payload.website}`;
+      }
       return api.put(`/affiliates/${id}`, payload);
     },
     onSuccess: () => {
