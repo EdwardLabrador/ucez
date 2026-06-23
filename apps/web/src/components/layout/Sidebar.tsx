@@ -12,24 +12,23 @@ import { useAuthStore } from '@/store/auth.store';
 import { useLogout } from '@/hooks/useAuth';
 import {
   LayoutDashboard, Building2, CreditCard, CalendarDays,
-  Briefcase, Bell, Users, ClipboardList, LogOut, ChevronRight,
+  Briefcase, Bell, Users, LogOut, ChevronRight,
   FileBarChart2, Settings,
 } from 'lucide-react';
 
 const adminNav = [
   { href: '/dashboard', label: 'Panel Principal', icon: LayoutDashboard },
-  { href: '/dashboard/afiliados', label: 'Afiliados', icon: Building2 },
-  { href: '/dashboard/cobros', label: 'Cobros y Pagos', icon: CreditCard },
-  { href: '/dashboard/eventos', label: 'Eventos', icon: CalendarDays },
-  { href: '/dashboard/servicios', label: 'Servicios', icon: Briefcase },
-  { href: '/dashboard/notificaciones', label: 'Notificaciones', icon: Bell },
-  { href: '/dashboard/reportes', label: 'Reportes', icon: FileBarChart2 },
+  { href: '/afiliados', label: 'Afiliados', icon: Building2 },
+  { href: '/cobros', label: 'Cobros y Pagos', icon: CreditCard },
+  { href: '/eventos', label: 'Eventos', icon: CalendarDays },
+  { href: '/servicios', label: 'Servicios', icon: Briefcase },
+  { href: '/notificaciones', label: 'Notificaciones', icon: Bell },
+  { href: '/reportes', label: 'Reportes', icon: FileBarChart2 },
 ];
 
 const adminOnlyNav = [
-  { href: '/dashboard/usuarios', label: 'Usuarios', icon: Users },
-  { href: '/dashboard/configuracion', label: 'Configuración', icon: Settings },
-  { href: '/dashboard/admin/auditoria', label: 'Auditoría', icon: ClipboardList },
+  { href: '/usuarios', label: 'Usuarios', icon: Users },
+  { href: '/configuracion', label: 'Configuración', icon: Settings },
 ];
 
 export function Sidebar() {
