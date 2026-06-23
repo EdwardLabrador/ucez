@@ -62,7 +62,15 @@ export class AffiliatesService {
 
   async update(id: string, dto: UpdateAffiliateDto) {
     await this.findById(id);
-    return this.prisma.affiliate.update({ where: { id }, data: dto });
+    const data: any = { ...dto };
+    if (data.membershipStartDate) data.membershipStartDate = new Date(data.membershipStartDate);
+    if (data.membershipEndDate) data.membershipEndDate = new Date(data.membershipEndDate);
+    try {
+      return await this.prisma.affiliate.update({ where: { id }, data });
+    } catch (e: any) {
+      if (e.code === 'P2002') throw new ConflictException('Ya existe un afiliado con ese RUC');
+      throw e;
+    }
   }
 
   async updateStatus(id: string, status: string) {
