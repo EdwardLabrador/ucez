@@ -4,6 +4,7 @@
 # Todos los Derechos Reservados UCEZ 2026
 
 # ── Etapa 1: Build ──────────────────────────────────────────
+# Build: 2026-06-23
 FROM node:22-slim AS builder
 
 WORKDIR /app
