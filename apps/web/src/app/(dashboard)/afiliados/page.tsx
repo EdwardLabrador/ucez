@@ -14,7 +14,6 @@ import { Card } from '@/components/ui/Card';
 import { Table, Pagination } from '@/components/ui/Table';
 import { StatusBadge, PlanBadge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
 import { Plus, Search, Eye, FileText } from 'lucide-react';
 import { useDebounce } from '@/hooks/useDebounce';
 
@@ -58,12 +57,12 @@ export default function AfiliadosPage() {
       header: 'Acciones',
       render: (row: any) => (
         <div className="flex gap-2">
-          <Link href={`/dashboard/afiliados/${row.id}`}>
+          <Link href={`/afiliados/${row.id}`}>
             <Button size="sm" variant="ghost" className="gap-1">
               <Eye className="w-3.5 h-3.5" /> Ver
             </Button>
           </Link>
-          <Link href={`/dashboard/afiliados/${row.id}?tab=cuenta`}>
+          <Link href={`/afiliados/${row.id}?tab=cuenta`}>
             <Button size="sm" variant="outline" className="gap-1">
               <FileText className="w-3.5 h-3.5" /> Estado de Cuenta
             </Button>
@@ -87,7 +86,7 @@ export default function AfiliadosPage() {
               onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             />
           </div>
-          <Link href="/dashboard/afiliados/nuevo">
+          <Link href="/afiliados/nuevo">
             <Button className="gap-2">
               <Plus className="w-4 h-4" /> Nuevo Afiliado
             </Button>

@@ -61,7 +61,7 @@ export default function NuevoAfiliadoPage() {
     onSuccess: () => {
       toast.success('Afiliado registrado correctamente');
       qc.invalidateQueries({ queryKey: ['affiliates'] });
-      router.push('/dashboard/afiliados');
+      router.push('/afiliados');
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.message ?? 'Error al registrar el afiliado');
@@ -72,7 +72,7 @@ export default function NuevoAfiliadoPage() {
     <div className="flex-1 overflow-y-auto">
       <TopBar title="Registrar Nuevo Afiliado" />
       <main className="p-6 max-w-4xl space-y-4">
-        <Link href="/dashboard/afiliados">
+        <Link href="/afiliados">
           <Button variant="ghost" size="sm" className="gap-1">
             <ArrowLeft className="w-4 h-4" /> Volver
           </Button>
@@ -116,7 +116,7 @@ export default function NuevoAfiliadoPage() {
           </Card>
 
           <div className="flex justify-end gap-3">
-            <Link href="/dashboard/afiliados">
+            <Link href="/afiliados">
               <Button variant="ghost">Cancelar</Button>
             </Link>
             <Button type="submit" loading={mutation.isPending}>
