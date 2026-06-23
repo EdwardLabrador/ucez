@@ -39,13 +39,21 @@ export class EventsService {
     return event;
   }
 
+  private parseDates(dto: Partial<CreateEventDto>) {
+    const data: any = { ...dto };
+    if (data.startDate) data.startDate = new Date(data.startDate);
+    if (data.endDate) data.endDate = new Date(data.endDate);
+    if (data.location === '') delete data.location;
+    return data;
+  }
+
   async create(dto: CreateEventDto) {
-    return this.prisma.event.create({ data: { ...dto, status: 'DRAFT' } as any });
+    return this.prisma.event.create({ data: { ...this.parseDates(dto), status: 'DRAFT' } });
   }
 
   async update(id: string, dto: Partial<CreateEventDto>) {
     await this.findById(id);
-    return this.prisma.event.update({ where: { id }, data: dto as any });
+    return this.prisma.event.update({ where: { id }, data: this.parseDates(dto) });
   }
 
   async publish(id: string) {

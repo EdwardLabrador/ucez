@@ -26,19 +26,42 @@ const TIPOS = [
   { value: 'OTHER', label: 'Otro' },
 ];
 
+function toIso(value: string): string {
+  if (!value) return value;
+  // datetime-local envía "2026-06-23T14:30" sin segundos — agregar :00
+  return value.length === 16 ? `${value}:00` : value;
+}
+
 export default function NuevoEventoPage() {
   const router = useRouter();
   const qc = useQueryClient();
-  const { register, handleSubmit } = useForm<Record<string, any>>({ defaultValues: { type: 'OTHER', isPublic: true, isVirtual: false } });
+  const { register, handleSubmit, formState: { errors } } = useForm<Record<string, any>>({
+    defaultValues: { type: 'OTHER', isPublic: true, isVirtual: false },
+  });
 
   const mutation = useMutation({
-    mutationFn: (data: any) => api.post('/events', data),
+    mutationFn: (raw: any) => {
+      const payload: Record<string, any> = { ...raw };
+      // Convertir fechas a ISO completo
+      if (payload.startDate) payload.startDate = toIso(payload.startDate);
+      if (payload.endDate) payload.endDate = toIso(payload.endDate);
+      // Eliminar campos opcionales vacíos
+      if (!payload.location) delete payload.location;
+      if (!payload.capacity && payload.capacity !== 0) delete payload.capacity;
+      else if (payload.capacity) payload.capacity = Number(payload.capacity);
+      // Asegurar booleanos
+      payload.isVirtual = Boolean(payload.isVirtual);
+      payload.isPublic = payload.isPublic !== false;
+      return api.post('/events', payload);
+    },
     onSuccess: () => {
       toast.success('Evento creado correctamente');
       qc.invalidateQueries({ queryKey: ['events'] });
       router.push('/eventos');
     },
-    onError: () => toast.error('Error al crear el evento'),
+    onError: (error: any) => {
+      toast.error(error.response?.data?.message ?? 'Error al crear el evento');
+    },
   });
 
   return (
@@ -54,16 +77,41 @@ export default function NuevoEventoPage() {
             <CardHeader><h3 className="font-semibold text-gray-800">Información del Evento</h3></CardHeader>
             <CardBody className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="sm:col-span-2">
-                <Input label="Título del Evento *" placeholder="Nombre del evento" {...register('title', { required: true })} />
+                <Input
+                  label="Título del Evento *"
+                  placeholder="Nombre del evento"
+                  error={(errors.title as any)?.message}
+                  {...register('title', { required: 'El título es requerido' })}
+                />
               </div>
               <div className="sm:col-span-2">
                 <label className="text-sm font-medium text-gray-700">Descripción *</label>
-                <textarea className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]" rows={3} {...register('description', { required: true })} />
+                <textarea
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]"
+                  rows={3}
+                  {...register('description', { required: true })}
+                />
               </div>
               <Select label="Tipo de Evento" options={TIPOS} {...register('type')} />
-              <Input label="Capacidad (opcional)" type="number" placeholder="Número de asistentes" {...register('capacity')} />
-              <Input label="Fecha y Hora de Inicio *" type="datetime-local" {...register('startDate', { required: true })} />
-              <Input label="Fecha y Hora de Cierre *" type="datetime-local" {...register('endDate', { required: true })} />
+              <Input
+                label="Capacidad (opcional)"
+                type="number"
+                min="1"
+                placeholder="Número de asistentes"
+                {...register('capacity')}
+              />
+              <Input
+                label="Fecha y Hora de Inicio *"
+                type="datetime-local"
+                error={(errors.startDate as any)?.message}
+                {...register('startDate', { required: 'Requerido' })}
+              />
+              <Input
+                label="Fecha y Hora de Cierre *"
+                type="datetime-local"
+                error={(errors.endDate as any)?.message}
+                {...register('endDate', { required: 'Requerido' })}
+              />
               <div className="sm:col-span-2 flex gap-6">
                 <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
                   <input type="checkbox" className="rounded" {...register('isVirtual')} />
@@ -74,7 +122,12 @@ export default function NuevoEventoPage() {
                   Evento Público
                 </label>
               </div>
-              <Input label="Ubicación / Enlace Virtual" placeholder="Dirección o URL del evento" {...register('location')} className="sm:col-span-2" />
+              <Input
+                label="Ubicación / Enlace Virtual"
+                placeholder="Dirección o URL del evento"
+                {...register('location')}
+                className="sm:col-span-2"
+              />
             </CardBody>
           </Card>
           <div className="flex justify-end gap-3">
