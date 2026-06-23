@@ -1,6 +1,6 @@
 // Diseñado por: Edward Labrador
 // Para Unión de Comerciantes del Estado Zulia
-// Versión: 1.0.0
+// Versión: 1.0.1
 // Todos los Derechos Reservados UCEZ 2026
 
 import { NestFactory } from '@nestjs/core';

@@ -46,7 +46,7 @@ export function RecentPaymentsTable({ payments, loading }: Props) {
       <CardHeader>
         <div className="flex items-center justify-between">
           <h2 className="font-semibold text-gray-800">Pagos Recientes</h2>
-          <Link href="/cobros" className="flex items-center gap-1 text-xs text-[#1a3c6e] hover:underline">
+          <Link href="/cobros" className="flex items-center gap-1 text-xs text-[#4169E1] hover:underline">
             Ver todos <ArrowRight className="w-3 h-3" />
           </Link>
         </div>

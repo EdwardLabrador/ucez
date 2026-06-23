@@ -52,7 +52,7 @@ export default function PortalEventosPage() {
             <Card key={ev.id} className="flex flex-col">
               <CardBody className="flex-1 space-y-3">
                 <div>
-                  <span className="text-xs font-medium text-[#1a3c6e] bg-blue-50 px-2 py-0.5 rounded-full">
+                  <span className="text-xs font-medium text-[#4169E1] bg-blue-50 px-2 py-0.5 rounded-full">
                     {TYPE_LABELS[ev.type] ?? 'Evento'}
                   </span>
                   <h3 className="font-bold text-gray-900 mt-2">{ev.title}</h3>
@@ -60,16 +60,16 @@ export default function PortalEventosPage() {
                 </div>
                 <div className="space-y-1.5 text-sm text-gray-500">
                   <div className="flex gap-2 items-center">
-                    <Calendar className="w-4 h-4 text-[#1a3c6e]" />
+                    <Calendar className="w-4 h-4 text-[#4169E1]" />
                     <span>{formatDate(ev.startDate)} — {formatDate(ev.endDate)}</span>
                   </div>
                   <div className="flex gap-2 items-center">
-                    {ev.isVirtual ? <Globe className="w-4 h-4 text-[#1a3c6e]" /> : <MapPin className="w-4 h-4 text-[#1a3c6e]" />}
+                    {ev.isVirtual ? <Globe className="w-4 h-4 text-[#4169E1]" /> : <MapPin className="w-4 h-4 text-[#4169E1]" />}
                     <span>{ev.isVirtual ? 'Modalidad Virtual' : ev.location ?? 'Sin ubicación'}</span>
                   </div>
                   {ev.capacity && (
                     <div className="flex gap-2 items-center">
-                      <Users className="w-4 h-4 text-[#1a3c6e]" />
+                      <Users className="w-4 h-4 text-[#4169E1]" />
                       <span>{ev._count?.registrations ?? 0} inscritos de {ev.capacity} cupos</span>
                     </div>
                   )}

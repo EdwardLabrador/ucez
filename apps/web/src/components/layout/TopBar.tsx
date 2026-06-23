@@ -27,7 +27,7 @@ export function TopBar({ title }: TopBarProps) {
           <Bell className="w-5 h-5" />
         </Link>
         <div className="flex items-center gap-2 pl-3 border-l border-gray-200">
-          <div className="w-8 h-8 rounded-full bg-[#1a3c6e] flex items-center justify-center text-white text-sm font-semibold">
+          <div className="w-8 h-8 rounded-full bg-[#4169E1] flex items-center justify-center text-white text-sm font-semibold">
             {user?.name?.charAt(0).toUpperCase()}
           </div>
           <div className="hidden sm:block">

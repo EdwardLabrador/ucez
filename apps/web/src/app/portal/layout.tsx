@@ -27,7 +27,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <header className="bg-[#1a3c6e] text-white shadow-md sticky top-0 z-20">
+      <header className="bg-[#4169E1] text-white shadow-md sticky top-0 z-20">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg bg-[#c8932a] flex items-center justify-center font-bold text-white">U</div>

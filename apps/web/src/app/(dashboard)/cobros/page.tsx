@@ -89,7 +89,7 @@ export default function CobrosPage() {
               </Button>
             </>
           ) : r.receiptUrl ? (
-            <a href={r.receiptUrl} target="_blank" rel="noreferrer" className="text-xs text-[#1a3c6e] underline">
+            <a href={r.receiptUrl} target="_blank" rel="noreferrer" className="text-xs text-[#4169E1] underline">
               Ver Recibo
             </a>
           ) : null}
@@ -106,7 +106,7 @@ export default function CobrosPage() {
           <select
             value={status}
             onChange={(e) => { setStatus(e.target.value); setPage(1); }}
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3c6e] w-full sm:w-auto"
+            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4169E1] w-full sm:w-auto"
           >
             {STATUS_OPTIONS.map(opt => (
               <option key={opt.value} value={opt.value}>{opt.label}</option>

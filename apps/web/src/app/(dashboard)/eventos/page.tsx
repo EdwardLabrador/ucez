@@ -49,7 +49,7 @@ export default function EventosPage() {
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3c6e] w-full sm:w-auto"
+            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4169E1] w-full sm:w-auto"
           >
             <option value="">Todos los estados</option>
             <option value="DRAFT">Borrador</option>

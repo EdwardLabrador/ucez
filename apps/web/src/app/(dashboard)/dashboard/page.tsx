@@ -55,7 +55,7 @@ export default function DashboardPage() {
     return (
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-10 h-10 border-4 border-[#1a3c6e] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+          <div className="w-10 h-10 border-4 border-[#4169E1] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
           <p className="text-gray-500 text-sm">Cargando datos...</p>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function DashboardPage() {
             value={s.affiliates?.total ?? '—'}
             subtitle={`${s.affiliates?.active ?? 0} activos · ${s.affiliates?.pending ?? 0} pendientes`}
             icon={<Building2 className="w-5 h-5" />}
-            bgClass="bg-blue-50" colorClass="text-[#1a3c6e]"
+            bgClass="bg-blue-50" colorClass="text-[#4169E1]"
           />
           <StatCard
             title="Ingresos del Mes"
@@ -133,15 +133,15 @@ export default function DashboardPage() {
           {/* GRÁFICA INGRESOS */}
           <div className="xl:col-span-2 bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
             <div className="flex items-center gap-2 mb-6">
-              <TrendingUp className="w-5 h-5 text-[#1a3c6e]" />
+              <TrendingUp className="w-5 h-5 text-[#4169E1]" />
               <h2 className="text-base font-black text-gray-900">Ingresos Últimos 6 Meses</h2>
             </div>
             <ResponsiveContainer width="100%" height={220}>
               <AreaChart data={chart} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="gradMonto" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#1a3c6e" stopOpacity={0.15} />
-                    <stop offset="95%" stopColor="#1a3c6e" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#4169E1" stopOpacity={0.15} />
+                    <stop offset="95%" stopColor="#4169E1" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -152,8 +152,8 @@ export default function DashboardPage() {
                   formatter={(v: number) => [formatCurrency(v), 'Ingresos']}
                   contentStyle={{ borderRadius: 8, border: '1px solid #e5e7eb', fontSize: 12 }}
                 />
-                <Area type="monotone" dataKey="monto" stroke="#1a3c6e" strokeWidth={2}
-                  fill="url(#gradMonto)" dot={{ fill: '#1a3c6e', r: 3 }} />
+                <Area type="monotone" dataKey="monto" stroke="#4169E1" strokeWidth={2}
+                  fill="url(#gradMonto)" dot={{ fill: '#4169E1', r: 3 }} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -168,7 +168,7 @@ export default function DashboardPage() {
               {(s.recentPayments ?? []).map((p: any) => (
                 <div key={p.id} className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
-                    <CreditCard className="w-4 h-4 text-[#1a3c6e]" />
+                    <CreditCard className="w-4 h-4 text-[#4169E1]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-gray-900 truncate">

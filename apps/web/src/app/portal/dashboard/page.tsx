@@ -97,7 +97,7 @@ export default function PortalDashboardPage() {
                 </div>
               ))}
             </div>
-            <Link href="/portal/mis-pagos" className="mt-3 inline-block text-sm text-[#1a3c6e] underline">
+            <Link href="/portal/mis-pagos" className="mt-3 inline-block text-sm text-[#4169E1] underline">
               Ver todos mis pagos →
             </Link>
           </CardBody>
@@ -107,7 +107,7 @@ export default function PortalDashboardPage() {
       <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="font-semibold text-gray-800">Próximos Eventos</h2>
-          <Link href="/portal/eventos" className="text-sm text-[#1a3c6e] hover:underline">Ver todos</Link>
+          <Link href="/portal/eventos" className="text-sm text-[#4169E1] hover:underline">Ver todos</Link>
         </div>
         {(events?.data ?? []).length === 0 ? (
           <p className="text-center text-gray-400 py-8">No hay eventos próximos</p>
@@ -118,7 +118,7 @@ export default function PortalDashboardPage() {
                 <CardBody className="space-y-2">
                   <p className="font-medium text-gray-900">{ev.title}</p>
                   <p className="text-xs text-gray-500 line-clamp-2">{ev.description}</p>
-                  <div className="flex items-center gap-1 text-xs text-[#1a3c6e]">
+                  <div className="flex items-center gap-1 text-xs text-[#4169E1]">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{formatDate(ev.startDate)}</span>
                   </div>

@@ -76,7 +76,7 @@ export default function NotificacionesPage() {
             {notifications.map((notif: any) => (
               <Card
                 key={notif.id}
-                className={cn('cursor-pointer transition-all', !notif.isRead && 'border-l-4 border-l-[#1a3c6e] bg-blue-50/40')}
+                className={cn('cursor-pointer transition-all', !notif.isRead && 'border-l-4 border-l-[#4169E1] bg-blue-50/40')}
                 onClick={() => !notif.isRead && markRead.mutate(notif.id)}
               >
                 <CardBody className="flex gap-3 py-3">
@@ -91,7 +91,7 @@ export default function NotificacionesPage() {
                     <p className="text-xs text-gray-400 mt-1">{formatDateTime(notif.createdAt)}</p>
                   </div>
                   {!notif.isRead && (
-                    <div className="flex-shrink-0 w-2 h-2 rounded-full bg-[#1a3c6e] mt-2" />
+                    <div className="flex-shrink-0 w-2 h-2 rounded-full bg-[#4169E1] mt-2" />
                   )}
                 </CardBody>
               </Card>

@@ -67,7 +67,7 @@ export default function PortalServiciosPage() {
                     href={svc.externalLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1 text-sm text-[#1a3c6e] hover:underline"
+                    className="inline-flex items-center gap-1 text-sm text-[#4169E1] hover:underline"
                   >
                     <ExternalLink className="w-3.5 h-3.5" /> Más información
                   </a>

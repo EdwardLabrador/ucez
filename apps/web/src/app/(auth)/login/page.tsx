@@ -32,7 +32,7 @@ export default function LoginPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f1e38] to-[#1a3c6e] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f1e38] to-[#4169E1] flex items-center justify-center p-4">
       <Toaster position="top-center" />
 
       <div className="w-full max-w-md">
@@ -86,7 +86,7 @@ export default function LoginPage() {
 
           <p className="text-center text-sm text-gray-500 mt-4">
             ¿Necesitas crear un usuario?{' '}
-            <Link href="/register" className="text-[#1a3c6e] font-semibold hover:underline">
+            <Link href="/register" className="text-[#4169E1] font-semibold hover:underline">
               Registrarse
             </Link>
           </p>
