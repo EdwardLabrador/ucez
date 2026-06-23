@@ -57,7 +57,14 @@ export default function NuevoAfiliadoPage() {
   });
 
   const mutation = useMutation({
-    mutationFn: (data: FormData) => api.post('/affiliates', data),
+    mutationFn: (data: FormData) => {
+      const payload: Record<string, any> = { ...data };
+      const optionalStrings = ['tradeName', 'category', 'website', 'description'];
+      for (const key of optionalStrings) {
+        if (!payload[key]) delete payload[key];
+      }
+      return api.post('/affiliates', payload);
+    },
     onSuccess: () => {
       toast.success('Afiliado registrado correctamente');
       qc.invalidateQueries({ queryKey: ['affiliates'] });

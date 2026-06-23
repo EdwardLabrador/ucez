@@ -93,7 +93,14 @@ export default function EditarAfiliadoPage() {
   }, [affiliate, reset]);
 
   const mutation = useMutation({
-    mutationFn: (data: FormData) => api.put(`/affiliates/${id}`, data),
+    mutationFn: (data: FormData) => {
+      const payload: Record<string, any> = { ...data };
+      const optionalStrings = ['tradeName', 'category', 'website', 'description', 'membershipEndDate'];
+      for (const key of optionalStrings) {
+        if (!payload[key]) delete payload[key];
+      }
+      return api.put(`/affiliates/${id}`, payload);
+    },
     onSuccess: () => {
       toast.success('Afiliado actualizado correctamente');
       qc.invalidateQueries({ queryKey: ['affiliate', id] });
