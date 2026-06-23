@@ -38,6 +38,9 @@ export default function ServiciosPage() {
       toast.success('Servicio creado'); qc.invalidateQueries({ queryKey: ['services-admin'] });
       setShowForm(false); setForm({ title: '', description: '', category: 'OTHER', contactInfo: '', externalLink: '' });
     },
+    onError: (error: any) => {
+      toast.error(error.response?.data?.message ?? 'Error al crear el servicio');
+    },
   });
 
   const remove = useMutation({

@@ -9,6 +9,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { ServicesService } from './services.service';
+import { CreateServiceDto } from './dto/create-service.dto';
 
 @ApiTags('Servicios')
 @ApiBearerAuth()
@@ -33,7 +34,7 @@ export class ServicesController {
   @UseGuards(RolesGuard)
   @Roles('SUPER_ADMIN', 'ADMIN', 'STAFF')
   @ApiOperation({ summary: 'Crear servicio' })
-  create(@Body() dto: any) {
+  create(@Body() dto: CreateServiceDto) {
     return this.servicesService.create(dto);
   }
 
@@ -41,7 +42,7 @@ export class ServicesController {
   @UseGuards(RolesGuard)
   @Roles('SUPER_ADMIN', 'ADMIN', 'STAFF')
   @ApiOperation({ summary: 'Actualizar servicio' })
-  update(@Param('id') id: string, @Body() dto: any) {
+  update(@Param('id') id: string, @Body() dto: CreateServiceDto) {
     return this.servicesService.update(id, dto);
   }
 

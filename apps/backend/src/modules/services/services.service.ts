@@ -29,13 +29,21 @@ export class ServicesService {
     return service;
   }
 
+  private cleanDto(dto: any) {
+    const data: any = { ...dto };
+    for (const key of ['contactInfo', 'externalLink', 'imageUrl']) {
+      if (data[key] === '') delete data[key];
+    }
+    return data;
+  }
+
   async create(dto: any) {
-    return this.prisma.service.create({ data: dto });
+    return this.prisma.service.create({ data: this.cleanDto(dto) });
   }
 
   async update(id: string, dto: any) {
     await this.findById(id);
-    return this.prisma.service.update({ where: { id }, data: dto });
+    return this.prisma.service.update({ where: { id }, data: this.cleanDto(dto) });
   }
 
   async remove(id: string) {
