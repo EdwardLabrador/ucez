@@ -21,7 +21,7 @@ RUN pnpm install --frozen-lockfile
 COPY packages/shared ./packages/shared
 COPY apps/backend ./apps/backend
 
-RUN pnpm --filter backend run build --force
+RUN pnpm --filter backend run build
 
 # ── Etapa 2: Runtime ────────────────────────────────────────
 FROM node:22-slim AS runner
