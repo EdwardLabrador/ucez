@@ -57,7 +57,7 @@ export default function EventosPage() {
             <option value="COMPLETED">Completados</option>
             <option value="CANCELLED">Cancelados</option>
           </select>
-          <Link href="/dashboard/eventos/nuevo">
+          <Link href="/eventos/nuevo">
             <Button className="gap-2"><Plus className="w-4 h-4" /> Nuevo Evento</Button>
           </Link>
         </div>

@@ -36,7 +36,7 @@ export default function NuevoEventoPage() {
     onSuccess: () => {
       toast.success('Evento creado correctamente');
       qc.invalidateQueries({ queryKey: ['events'] });
-      router.push('/dashboard/eventos');
+      router.push('/eventos');
     },
     onError: () => toast.error('Error al crear el evento'),
   });
@@ -45,7 +45,7 @@ export default function NuevoEventoPage() {
     <div className="flex-1 overflow-y-auto">
       <TopBar title="Crear Nuevo Evento" />
       <main className="p-6 max-w-2xl space-y-4">
-        <Link href="/dashboard/eventos">
+        <Link href="/eventos">
           <Button variant="ghost" size="sm" className="gap-1"><ArrowLeft className="w-4 h-4" /> Volver</Button>
         </Link>
 
@@ -78,7 +78,7 @@ export default function NuevoEventoPage() {
             </CardBody>
           </Card>
           <div className="flex justify-end gap-3">
-            <Link href="/dashboard/eventos"><Button variant="ghost">Cancelar</Button></Link>
+            <Link href="/eventos"><Button variant="ghost">Cancelar</Button></Link>
             <Button type="submit" loading={mutation.isPending}>Crear Evento</Button>
           </div>
         </form>

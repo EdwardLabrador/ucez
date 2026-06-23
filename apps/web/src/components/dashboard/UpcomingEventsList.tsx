@@ -25,7 +25,7 @@ export function UpcomingEventsList({ events, loading }: Props) {
       <CardHeader>
         <div className="flex items-center justify-between">
           <h2 className="font-semibold text-gray-800">Próximos Eventos</h2>
-          <Link href="/dashboard/eventos" className="flex items-center gap-1 text-xs text-[#1a3c6e] hover:underline">
+          <Link href="/eventos" className="flex items-center gap-1 text-xs text-[#1a3c6e] hover:underline">
             Ver todos <ArrowRight className="w-3 h-3" />
           </Link>
         </div>

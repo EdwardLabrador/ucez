@@ -112,7 +112,7 @@ export default function CobrosPage() {
               <option key={opt.value} value={opt.value}>{opt.label}</option>
             ))}
           </select>
-          <Link href="/dashboard/cobros/nuevo">
+          <Link href="/cobros/nuevo">
             <Button className="gap-2">
               <Plus className="w-4 h-4" /> Nuevo Cobro
             </Button>

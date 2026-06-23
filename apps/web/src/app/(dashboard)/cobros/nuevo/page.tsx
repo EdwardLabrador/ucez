@@ -64,7 +64,7 @@ function NuevoCobroForm() {
     onSuccess: () => {
       toast.success('Cobro registrado correctamente');
       qc.invalidateQueries({ queryKey: ['payments'] });
-      router.push('/dashboard/cobros');
+      router.push('/cobros');
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.message ?? 'Error al registrar el cobro');
@@ -80,7 +80,7 @@ function NuevoCobroForm() {
     <div className="flex-1 overflow-y-auto">
       <TopBar title="Registrar Nuevo Cobro" />
       <main className="p-6 max-w-2xl space-y-4">
-        <Link href="/dashboard/cobros">
+        <Link href="/cobros">
           <Button variant="ghost" size="sm" className="gap-1">
             <ArrowLeft className="w-4 h-4" /> Volver
           </Button>
@@ -138,7 +138,7 @@ function NuevoCobroForm() {
           </Card>
 
           <div className="flex justify-end gap-3">
-            <Link href="/dashboard/cobros">
+            <Link href="/cobros">
               <Button variant="ghost">Cancelar</Button>
             </Link>
             <Button type="submit" loading={mutation.isPending}>
