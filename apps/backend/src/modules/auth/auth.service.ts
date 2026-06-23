@@ -66,6 +66,16 @@ export class AuthService {
     return this.login(user);
   }
 
+  async register(dto: { email: string; password: string; name: string; role?: string }) {
+    const user = await this.usersService.create({
+      email: dto.email,
+      password: dto.password,
+      name: dto.name,
+      role: (dto.role as any) ?? 'AFFILIATE',
+    });
+    return this.login(user);
+  }
+
   async logout(userId: string) {
     await this.prisma.refreshToken.deleteMany({ where: { userId } });
     return { message: 'Sesión cerrada correctamente' };

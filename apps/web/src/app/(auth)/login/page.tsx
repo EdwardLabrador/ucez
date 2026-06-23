@@ -5,6 +5,7 @@
 
 'use client';
 
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -82,6 +83,13 @@ export default function LoginPage() {
               Ingresar
             </Button>
           </form>
+
+          <p className="text-center text-sm text-gray-500 mt-4">
+            ¿Necesitas crear un usuario?{' '}
+            <Link href="/register" className="text-[#1a3c6e] font-semibold hover:underline">
+              Registrarse
+            </Link>
+          </p>
         </div>
 
         <p className="text-center text-xs text-blue-300 mt-6">

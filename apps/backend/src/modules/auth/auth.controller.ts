@@ -3,7 +3,7 @@
 // Versión: 1.0.0
 // Todos los Derechos Reservados UCEZ 2026
 
-import { Controller, Post, Body, UseGuards, Request, HttpCode } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Request, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
@@ -13,6 +13,13 @@ import { RefreshTokenDto } from './dto/refresh-token.dto';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
+
+  @Post('register')
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Registrar nuevo usuario' })
+  register(@Body() dto: { email: string; password: string; name: string; role?: string }) {
+    return this.authService.register(dto);
+  }
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
