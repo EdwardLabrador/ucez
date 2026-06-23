@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/Button';
 import { Table } from '@/components/ui/Table';
 import { formatDate, formatCurrency } from '@/lib/utils';
 import toast from 'react-hot-toast';
-import { ArrowLeft, Building2, Phone, Mail, Globe, MapPin, User, Calendar, CreditCard, FileText } from 'lucide-react';
+import { ArrowLeft, Building2, Phone, Mail, Globe, MapPin, User, Calendar, CreditCard, FileText, Pencil } from 'lucide-react';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
@@ -130,6 +130,11 @@ function AfiliadoDetalle() {
             <Link href={`/cobros/nuevo?affiliateId=${id}`}>
               <Button size="sm" variant="secondary" className="gap-1">
                 <CreditCard className="w-3.5 h-3.5" /> Registrar Cobro
+              </Button>
+            </Link>
+            <Link href={`/afiliados/${id}/editar`}>
+              <Button size="sm" variant="secondary" className="gap-1">
+                <Pencil className="w-3.5 h-3.5" /> Editar
               </Button>
             </Link>
           </div>
